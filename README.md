@@ -1,16 +1,67 @@
-# React + Vite
+:::writing{variant=“standard” id=“84021”}
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SmartSpend – Expense Tracking & Financial Analysis App
 
-Currently, two official plugins are available:
+SmartSpend is a modern React-based expense tracking web application that helps users record, monitor, and analyze their spending habits efficiently. The application allows users to add expenses, categorize them, and visualize spending patterns through graphs and category analysis.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application also supports real-time currency conversion, allowing users to view their expenses in different currencies such as USD, EUR, and GBP.
 
-## React Compiler
+Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+• Add daily expenses with name, amount, category, and currency
+• Delete expenses instantly
+• Expense history grouped by month
+• Total lifetime spending calculation
+• Category-wise expense analysis
+• Monthly expense bar graph visualization
+• Real-time currency conversion
+• Data persistence using LocalStorage
+• Clean and responsive UI built using Tailwind CSS
 
-## Expanding the ESLint configuration
+Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Frontend
+React (Functional Components)
+React Hooks – useState, useEffect
+
+Styling
+Tailwind CSS
+
+Data Storage
+Browser LocalStorage
+
+API
+Exchange Rate API for currency conversion
+
+Application Components
+
+ExpensesPage – Main page managing application state
+AddExpense – Form for adding new expenses
+ExpenseList – Displays expense history
+Total – Shows total spending with monthly graph
+Category – Displays category-wise expense analysis
+
+Installation
+
+Clone the repository
+git clone https://github.com/yourusername/smartspend-expense-tracker.git
+
+Navigate to project directory
+cd smartspend-expense-tracker
+
+Install dependencies
+npm install
+
+Run the development server
+npm run dev
+
+Open the browser
+http://localhost:5173
+
+Future Improvements
+
+• Edit expense functionality
+• User authentication
+• Cloud database storage
+• Advanced analytics and charts
+:::
