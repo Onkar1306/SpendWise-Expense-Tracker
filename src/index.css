@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+
+@font-face {
+  font-family: fancyfont;
+  src: url('./fonts/LibertinusSerif-Regular.ttf');
+}
+
+@font-face {
+  font-family: simplefont;
+  src: url('./fonts/Nunito-Regular.ttf');
+}
+
+@theme {
+ --font-fancyfont: fancyfont;
+  --font-simplefont: simplefont;
+}
