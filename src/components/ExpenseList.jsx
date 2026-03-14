@@ -1,21 +1,18 @@
 import React from "react";
-import deleteIcon from "../assets/icons8-delete-96.png"
+import deleteIcon from "../assets/icons8-delete-96.png";
 const ExpenseList = ({ expenses, onDelete }) => {
   if (expenses.length === 0) {
-    return (
-      <p className="text-gray-500 ">
-        No expenses added yet
-      </p>
-    );
+    return <p className="text-gray-500 ">No expenses added yet</p>;
   }
 
   const currencySymbols = {
     INR: "₹",
     USD: "$",
     EUR: "€",
-    GBP: "£"
+    GBP: "£",
   };
 
+  // here we group expenses by month and year using reduce.
   const groupedExpenses = expenses.reduce((groups, expense) => {
     const date = new Date(expense.date);
     const monthYear = date.toLocaleString("default", {
@@ -26,8 +23,6 @@ const ExpenseList = ({ expenses, onDelete }) => {
     if (!groups[monthYear]) {
       groups[monthYear] = [];
     }
-
-   
     groups[monthYear].unshift(expense);
     return groups;
   }, {});
@@ -57,23 +52,32 @@ const ExpenseList = ({ expenses, onDelete }) => {
                     </span>
 
                     <div>
-                      <p className="font-bold font-simplefont">{expense.name}</p>
+                      <p className="font-bold font-simplefont">
+                        {expense.name}
+                      </p>
                       <p className="font-simplefont text-sm text-gray-400">
-                        {expense.category}
+                        {" "}
+                        {expense.category}{" "}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-5">
                     <span className="font-bold font-fancyfont text-green-400 font-lg text-lg">
-                      {currencySymbols[expense.currency] || expense.currency} {expense.originalAmount}
+                      {currencySymbols[expense.currency] || expense.currency}{" "}
+                      {expense.originalAmount}
                     </span>
 
                     <button
                       onClick={() => onDelete(expense.id)}
                       className="text-red-500 hover:text-red-700 text-sm"
-                      title="Delete Expense">
-                      <img src={deleteIcon} alt="Delete"  className="w-5 h-5 cursor-pointer" />
+                      title="Delete Expense"
+                    >
+                      <img
+                        src={deleteIcon}
+                        alt="Delete"
+                        className="w-5 h-5 cursor-pointer"
+                      />
                     </button>
                   </div>
                 </div>
@@ -84,6 +88,6 @@ const ExpenseList = ({ expenses, onDelete }) => {
       ))}
     </div>
   );
-}
+};
 
 export default ExpenseList;

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const AddExpense = ({ isOpen, onClose, onAddExpense }) => {
-
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [currency, setCurrency] = useState("INR");
@@ -11,6 +10,7 @@ const AddExpense = ({ isOpen, onClose, onAddExpense }) => {
 
   if (!isOpen) return null;
 
+  // convert amount to INR whenever amount or currency changes
   useEffect(() => {
     if (currency === "INR") {
       setRate(1);
@@ -19,7 +19,7 @@ const AddExpense = ({ isOpen, onClose, onAddExpense }) => {
     const fetchRate = async () => {
       try {
         const res = await axios.get(
-          `https://api.frankfurter.app/latest?from=${currency}&to=INR`
+          `https://api.frankfurter.app/latest?from=${currency}&to=INR`,
         );
         setRate(res.data.rates.INR);
       } catch (err) {
@@ -29,11 +29,12 @@ const AddExpense = ({ isOpen, onClose, onAddExpense }) => {
     fetchRate();
   }, [currency]);
 
-  const convertedINR = amount ? (amount * rate) : 0;
+  const convertedINR = amount ? amount * rate : 0;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // json object with all expense details, including converted INR amount
     const newExpense = {
       id: Date.now(),
       name,
@@ -41,7 +42,7 @@ const AddExpense = ({ isOpen, onClose, onAddExpense }) => {
       currency,
       amountINR: convertedINR,
       category,
-      date: new Date()
+      date: new Date(),
     };
 
     console.log("New Expense:", newExpense);
@@ -58,8 +59,9 @@ const AddExpense = ({ isOpen, onClose, onAddExpense }) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
       <div className="bg-zinc-900 text-white p-6 rounded-xl w-[360px]">
-
-        <h2 className="text-xl font-simplefont font-bold mb-4 text-center">Add Expense</h2>
+        <h2 className="text-xl font-simplefont font-bold mb-4 text-center">
+          Add Expense
+        </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
@@ -117,11 +119,20 @@ const AddExpense = ({ isOpen, onClose, onAddExpense }) => {
           </div>
 
           <div className="flex gap-3">
-            <button type="button" onClick={onClose} className="w-full bg-gray-600 py-2 rounded" > Cancel </button>
-            <button type="submit" className="w-full bg-rose-700 py-2 rounded"> Add Expense </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="w-full bg-gray-600 py-2 rounded"
+            >
+              {" "}
+              Cancel{" "}
+            </button>
+            <button type="submit" className="w-full bg-rose-700 py-2 rounded">
+              {" "}
+              Add Expense{" "}
+            </button>
           </div>
         </form>
-
       </div>
     </div>
   );
