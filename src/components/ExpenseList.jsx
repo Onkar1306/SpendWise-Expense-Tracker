@@ -12,7 +12,7 @@ const ExpenseList = ({ expenses, onDelete }) => {
     GBP: "£",
   };
 
-  // here we group expenses by month and year using reduce.
+  // here we group expenses by month and year using reduce (test).
   const groupedExpenses = expenses.reduce((groups, expense) => {
     const date = new Date(expense.date);
     const monthYear = date.toLocaleString("default", {
