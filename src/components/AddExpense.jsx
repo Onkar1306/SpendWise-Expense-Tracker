@@ -34,7 +34,7 @@ const AddExpense = ({ isOpen, onClose, onAddExpense }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // json object with all expense details, including converted INR amount
+    // json object with all expense details, including converted INR amount mc
     const newExpense = {
       id: Date.now(),
       name,
